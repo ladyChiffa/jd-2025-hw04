@@ -1,55 +1,49 @@
-import java.util.LinkedList;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Main {
-    public static void printTasks(LinkedList<String> taskList) {
-        int i = 0;
+    public static void printTasks(ArrayList<String> taskList) {
         System.out.println("Ваш список дел:");
-        for (String t : taskList) {
-            i++;
-            System.out.println(i + ". " + t);
+        for (int i = 0; i < taskList.size(); i++) {
+            System.out.println(i + ". " + taskList.get(i));
         }
     }
 
-    public static int searchTaskIndex(LinkedList<String> taskList, String task) {
-        int i = 0;
-        for (String t : taskList) {
-            if(t.equals(task)) {
+    public static int searchTaskIndex(ArrayList<String> taskList, String task) {
+        for (int i = 0; i < taskList.size(); i++) {
+            if(taskList.get(i).equals(task)) {
                 return i;
             }
-            i++;
         }
         return -1;
     }
 
-    public static int searchTaskMatchIndex(LinkedList<String> taskList, String keyword) {
-        int i = 0;
-        for (String t : taskList) {
-            if(t.contains(keyword)) {
+    public static int searchTaskMatchIndex(ArrayList<String> taskList, String keyword) {
+        for (int i = 0; i < taskList.size(); i++) {
+            if(taskList.get(i).contains(keyword)) {
                 return i;
             }
-            i++;
         }
         return -1;
     }
 
-    public static boolean removeMatch(LinkedList<String> taskList, String keyword) {
+    public static boolean removeMatch(ArrayList<String> taskList, String keyword) {
         int i = 0;
-        int n = 0;
+        int removedCount = 0;
         i = searchTaskMatchIndex(taskList, keyword);
         while (i >= 0) {
             taskList.remove(i);
-            n++;
+            removedCount++;
             i = searchTaskMatchIndex(taskList, keyword);
         }
-        if (n > 0) {
+        if (removedCount > 0) {
             return true;
         }
         return false;
     }
 
     public static void main(String[] args) {
-        LinkedList<String> taskList = new LinkedList<>();
+        ArrayList<String> taskList = new ArrayList<>();
         taskList.add("Сделать уборку");
         taskList.add("Сходить в магазин стройматериалов");
         taskList.add("Сходить в обувной магазин");
