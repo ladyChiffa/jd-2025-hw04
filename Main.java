@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class Main {
@@ -43,7 +44,7 @@ public class Main {
     }
 
     public static void main(String[] args) {
-        ArrayList<String> taskList = new ArrayList<>();
+        List<String> taskList = new ArrayList<>();
         taskList.add("Сделать уборку");
         taskList.add("Сходить в магазин стройматериалов");
         taskList.add("Сходить в обувной магазин");
@@ -52,7 +53,7 @@ public class Main {
 
         System.out.println("Здравствуйте! Давайте поработаем над вашим списком дел!");
         System.out.println("Вчера вы уже запланировали несколько задач.");
-        printTasks(taskList);
+        printTasks((ArrayList<String>)taskList);
 
         Scanner scanner = new Scanner(System.in);
         String oper;
@@ -89,11 +90,11 @@ public class Main {
                     taskList.add(oper);
                     System.out.println("Добавлено!");
 
-                    printTasks(taskList);
+                    printTasks((ArrayList<String>)taskList);
                     break;
                 case 2:
                     System.out.println();
-                    printTasks(taskList);
+                    printTasks((ArrayList<String>)taskList);
                     break;
                 case 3:
                     System.out.println();
@@ -113,13 +114,13 @@ public class Main {
                         taskList.remove(operation - 1);
                         System.out.println("Удалено!");
                     }
-                    printTasks(taskList);
+                    printTasks((ArrayList<String>)taskList);
                     break;
                 case 4:
                     System.out.println();
                     System.out.print("Введите задачу для удаления: ");
                     oper = scanner.nextLine();
-                    operation = searchTaskIndex(taskList, oper);
+                    operation = searchTaskIndex((ArrayList<String>)taskList, oper);
                     if (operation == -1) {
                         System.out.println ("Такой задачи нет, попробуйте еще раз");
                     }
@@ -127,20 +128,20 @@ public class Main {
                         taskList.remove(operation);
                         System.out.println("Удалено!");
                     }
-                    printTasks(taskList);
+                    printTasks((ArrayList<String>)taskList);
                     break;
                 case 5:
                     System.out.println();
                     System.out.print("Введите слово для удаления: ");
                     oper = scanner.nextLine();
-                    result = removeMatch(taskList, oper);
+                    result = removeMatch((ArrayList<String>)taskList, oper);
                     if (result) {
                         System.out.println("Удалено!");
                     }
                     else {
                         System.out.println ("Не нашлось задач с таким ключевым словом");
                     }
-                    printTasks(taskList);
+                    printTasks((ArrayList<String>)taskList);
                     break;
                 default:
                     System.out.println("Такой операции нет");
@@ -149,6 +150,6 @@ public class Main {
 
         System.out.println();
         System.out.println("Ваш финальный список дел на сегодня:");
-        printTasks(taskList);
+        printTasks((ArrayList<String>)taskList);
     }
 }
