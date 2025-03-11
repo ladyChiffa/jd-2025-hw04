@@ -3,14 +3,14 @@ import java.util.List;
 import java.util.Scanner;
 
 public class Main {
-    public static void printTasks(ArrayList<String> taskList) {
+    public static void printTasks(List<String> taskList) {
         System.out.println("Ваш список дел:");
         for (int i = 0; i < taskList.size(); i++) {
             System.out.println(i + ". " + taskList.get(i));
         }
     }
 
-    public static int searchTaskIndex(ArrayList<String> taskList, String task) {
+    public static int searchTaskIndex(List<String> taskList, String task) {
         for (int i = 0; i < taskList.size(); i++) {
             if(taskList.get(i).equals(task)) {
                 return i;
@@ -19,7 +19,7 @@ public class Main {
         return -1;
     }
 
-    public static int searchTaskMatchIndex(ArrayList<String> taskList, String keyword) {
+    public static int searchTaskMatchIndex(List<String> taskList, String keyword) {
         for (int i = 0; i < taskList.size(); i++) {
             if(taskList.get(i).contains(keyword)) {
                 return i;
@@ -28,7 +28,7 @@ public class Main {
         return -1;
     }
 
-    public static boolean removeMatch(ArrayList<String> taskList, String keyword) {
+    public static boolean removeMatch(List<String> taskList, String keyword) {
         int i = 0;
         int removedCount = 0;
         i = searchTaskMatchIndex(taskList, keyword);
@@ -53,7 +53,7 @@ public class Main {
 
         System.out.println("Здравствуйте! Давайте поработаем над вашим списком дел!");
         System.out.println("Вчера вы уже запланировали несколько задач.");
-        printTasks((ArrayList<String>)taskList);
+        printTasks(taskList);
 
         Scanner scanner = new Scanner(System.in);
         String oper;
@@ -90,11 +90,11 @@ public class Main {
                     taskList.add(oper);
                     System.out.println("Добавлено!");
 
-                    printTasks((ArrayList<String>)taskList);
+                    printTasks(taskList);
                     break;
                 case 2:
                     System.out.println();
-                    printTasks((ArrayList<String>)taskList);
+                    printTasks(taskList);
                     break;
                 case 3:
                     System.out.println();
@@ -114,13 +114,13 @@ public class Main {
                         taskList.remove(operation - 1);
                         System.out.println("Удалено!");
                     }
-                    printTasks((ArrayList<String>)taskList);
+                    printTasks(taskList);
                     break;
                 case 4:
                     System.out.println();
                     System.out.print("Введите задачу для удаления: ");
                     oper = scanner.nextLine();
-                    operation = searchTaskIndex((ArrayList<String>)taskList, oper);
+                    operation = searchTaskIndex(taskList, oper);
                     if (operation == -1) {
                         System.out.println ("Такой задачи нет, попробуйте еще раз");
                     }
@@ -128,20 +128,20 @@ public class Main {
                         taskList.remove(operation);
                         System.out.println("Удалено!");
                     }
-                    printTasks((ArrayList<String>)taskList);
+                    printTasks(taskList);
                     break;
                 case 5:
                     System.out.println();
                     System.out.print("Введите слово для удаления: ");
                     oper = scanner.nextLine();
-                    result = removeMatch((ArrayList<String>)taskList, oper);
+                    result = removeMatch(taskList, oper);
                     if (result) {
                         System.out.println("Удалено!");
                     }
                     else {
                         System.out.println ("Не нашлось задач с таким ключевым словом");
                     }
-                    printTasks((ArrayList<String>)taskList);
+                    printTasks(taskList);
                     break;
                 default:
                     System.out.println("Такой операции нет");
@@ -150,6 +150,6 @@ public class Main {
 
         System.out.println();
         System.out.println("Ваш финальный список дел на сегодня:");
-        printTasks((ArrayList<String>)taskList);
+        printTasks(taskList);
     }
 }
