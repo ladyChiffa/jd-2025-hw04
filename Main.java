@@ -12,7 +12,7 @@ public class Main {
 
     public static int searchTaskIndex(List<String> taskList, String task) {
         for (int i = 0; i < taskList.size(); i++) {
-            if(taskList.get(i).equals(task)) {
+            if (taskList.get(i).equals(task)) {
                 return i;
             }
         }
@@ -21,7 +21,7 @@ public class Main {
 
     public static int searchTaskMatchIndex(List<String> taskList, String keyword) {
         for (int i = 0; i < taskList.size(); i++) {
-            if(taskList.get(i).contains(keyword)) {
+            if (taskList.get(i).contains(keyword)) {
                 return i;
             }
         }
@@ -29,9 +29,8 @@ public class Main {
     }
 
     public static boolean removeMatch(List<String> taskList, String keyword) {
-        int i = 0;
         int removedCount = 0;
-        i = searchTaskMatchIndex(taskList, keyword);
+        int i = searchTaskMatchIndex(taskList, keyword);
         while (i >= 0) {
             taskList.remove(i);
             removedCount++;
@@ -67,7 +66,7 @@ public class Main {
             System.out.println("3 - Удалить дело по номеру");
             System.out.println("4 - Удалить дело по названию");
             System.out.println("5 - Удалить дело по ключевому слову");
-            System.out.print  ("Ваш выбор: ");
+            System.out.print("Ваш выбор: ");
             oper = scanner.nextLine();
 
             if (oper.equals("0")) {
@@ -78,7 +77,7 @@ public class Main {
             try {
                 operation = Integer.parseInt(oper);
             } catch (NumberFormatException e) {
-                System.out.println ("Неверный выбор, попробуйте еще раз");
+                System.out.println("Неверный выбор, попробуйте еще раз");
                 continue;
             }
 
@@ -103,14 +102,13 @@ public class Main {
                     try {
                         operation = Integer.parseInt(oper);
                     } catch (NumberFormatException e) {
-                        System.out.println ("Здесь нужен номер задачи, попробуйте еще раз");
+                        System.out.println("Здесь нужен номер задачи, попробуйте еще раз");
                         break;
                     }
                     if (operation > taskList.size()) {
-                        System.out.println ("Задачи с таким номером нет, удалять нечего");
+                        System.out.println("Задачи с таким номером нет, удалять нечего");
                         break;
-                    }
-                    else {
+                    } else {
                         taskList.remove(operation - 1);
                         System.out.println("Удалено!");
                     }
@@ -122,9 +120,8 @@ public class Main {
                     oper = scanner.nextLine();
                     operation = searchTaskIndex(taskList, oper);
                     if (operation == -1) {
-                        System.out.println ("Такой задачи нет, попробуйте еще раз");
-                    }
-                    else {
+                        System.out.println("Такой задачи нет, попробуйте еще раз");
+                    } else {
                         taskList.remove(operation);
                         System.out.println("Удалено!");
                     }
@@ -137,9 +134,8 @@ public class Main {
                     result = removeMatch(taskList, oper);
                     if (result) {
                         System.out.println("Удалено!");
-                    }
-                    else {
-                        System.out.println ("Не нашлось задач с таким ключевым словом");
+                    } else {
+                        System.out.println("Не нашлось задач с таким ключевым словом");
                     }
                     printTasks(taskList);
                     break;
